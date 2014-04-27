@@ -9,30 +9,80 @@ package br.edu.cordeiro.pso.projeto1;
 public class Buffer {
     
     private Integer[] buffer = {null, null, null, null, null};
-    
-    private int tail = -1;
-    
-    public void write(Integer x) {
-        tail++;
-        if (buffer[tail] != null || tail>=5) {
-            System.err.println("BUFFER OVERFLOW");
-            return;
+        
+    public synchronized String push(Integer x) {
+        while(!hasSpace()) {
+            try {
+                wait();
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace(System.err);
+            }
         }
-        buffer[tail%5] = x;
+        int index = searchToPush(); 
+        buffer[index] = x;
+        notifyAll();
+        
+        return "Write: " + x + " Position: " + index;
     }
     
-    public Integer read() {
-        if (buffer[tail] == null || tail<0) {
-            System.err.println("BUFFER UNDERFLOW");
-            return null;
+    public synchronized String pull() {
+        while(isEmpty()) {
+            try {
+                wait();
+            }
+            catch(InterruptedException e) {
+                e.printStackTrace(System.err);
+            }
         }
-        Integer temp = buffer[tail];
-        buffer[tail] = null;
-        tail--;
-        return temp;
+        int index = searchToPull();
+        Integer temp = buffer[index];
+        buffer[index] = null;
+        
+        String report = "Read: " + temp.toString() + " Position: " + index;
+        return report;
     }
     
-    public int getTail() {
-        return tail;
+    public int searchToPush() {
+        int space = 0;
+        for (int i = 0; i < buffer.length; i++) {
+            if(buffer[i]==null) {
+                space = i;
+                break;
+            }            
+        }
+        return space;
+    }
+    
+    public int searchToPull() {
+        int space = 0;
+        for (int i = 0; i < buffer.length; i++) {
+            if(buffer[i]!=null) {
+                space = i;
+                break;
+            }            
+        }
+        return space;
+    }
+    
+    public boolean hasSpace() {
+        boolean has = false;
+        for (int i = 0; i < buffer.length; i++) {
+            if(buffer[i]==null) {
+                has = true;
+                break;
+            }
+        }
+        return has;
+    } 
+    
+    public boolean isEmpty() {
+        boolean empty = true;
+        for (int i = 0; i < buffer.length; i++) {
+            if(buffer[i]!=null) {
+                empty = false;
+            }            
+        }
+        return empty;
     }
 }

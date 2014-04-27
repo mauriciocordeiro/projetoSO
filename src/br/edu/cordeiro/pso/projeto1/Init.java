@@ -15,22 +15,37 @@ public class Init {
         /*
          * Create threads
         */
-        Reader[] readers = new Reader[25];
+        Consumer[] readers = new Consumer[25];
         for (int i = 0; i < 25; i++) {
-            readers[i] = new Reader(buffer);            
+            readers[i] = new Consumer(buffer);            
         }
         
-        Writer[] writers = new Writer[25];
+        Producer[] writers = new Producer[25];
         for (int i = 0; i < 25; i++) {
-            writers[i] = new Writer(buffer);            
+            writers[i] = new Producer(buffer);            
         }
         
+        /*
+         * Start Threads 
+         */
         for (int i = 0; i < 25; i++) {
             writers[i].start();
         }
         
         for (int i = 0; i < 25; i++) {
             readers[i].start();            
+        }
+        
+        /*
+         * Join Threads
+         */
+        for (int i = 0; i < writers.length; i++) {
+            try {
+                writers[i].join();
+                readers[i].join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace(System.err);
+            }
         }
     }
 }
