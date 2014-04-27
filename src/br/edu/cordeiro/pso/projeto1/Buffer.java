@@ -38,9 +38,8 @@ public class Buffer {
         int index = searchToPull();
         Integer temp = buffer[index];
         buffer[index] = null;
-        
-        String report = "Read: " + temp.toString() + " Position: " + index;
-        return report;
+
+        return "Read: " + temp.toString() + " Position: " + index;
     }
     
     public int searchToPush() {
