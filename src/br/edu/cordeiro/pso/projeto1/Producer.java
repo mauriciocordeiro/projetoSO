@@ -18,6 +18,6 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
-        System.out.println(this.getName() + buffer.push(new Random().nextInt(101)));
+        System.out.println(this.getName() + " " + buffer.push(new Random().nextInt(101)));
     }
 }

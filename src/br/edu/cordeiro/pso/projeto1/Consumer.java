@@ -16,6 +16,6 @@ public class Consumer extends Thread {
     
     @Override
     public void run() {
-        System.out.println(this.getName() + buffer.pull());
+        System.out.println(this.getName() + " " + buffer.pull());
     }
 }
