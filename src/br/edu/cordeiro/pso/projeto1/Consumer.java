@@ -3,8 +3,8 @@ package br.edu.cordeiro.pso.projeto1;
 /**
  *
  * @author Mauricio Cordeiro
- * @version 1.0
- * @since 4/24/2014
+ * @version 0.1
+ * @since 4/27/2014
  */
 public class Consumer extends Thread {
 

@@ -4,7 +4,7 @@ package br.edu.cordeiro.pso.projeto1;
  *
  * @author Mauricio Cordeiro
  * @version 0.1
- * @since 4/24/2014
+ * @since 4/27/2014
  */
 public class Buffer {
     

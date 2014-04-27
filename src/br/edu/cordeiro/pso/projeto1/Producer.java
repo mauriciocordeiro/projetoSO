@@ -5,8 +5,8 @@ import java.util.Random;
 /**
  *
  * @author Mauricio Cordeiro
- * @version 1.0
- * @since 4/24/2014
+ * @version 0.1
+ * @since 4/27/2014
  */
 public class Producer extends Thread {
     
