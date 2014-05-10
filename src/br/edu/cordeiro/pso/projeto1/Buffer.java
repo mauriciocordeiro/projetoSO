@@ -9,11 +9,12 @@ package br.edu.cordeiro.pso.projeto1;
 public class Buffer {
     
     private Integer[] buffer = {null, null, null, null, null};
-        
+    private final long SECONDS = 1000;
+    
     public synchronized String push(Integer x) {
         while(!hasSpace()) {
             try {
-                wait();
+                wait(SECONDS);
             }
             catch(InterruptedException e) {
                 e.printStackTrace(System.err);
@@ -29,7 +30,7 @@ public class Buffer {
     public synchronized String pull() {
         while(isEmpty()) {
             try {
-                wait();
+                wait(SECONDS);
             }
             catch(InterruptedException e) {
                 e.printStackTrace(System.err);
