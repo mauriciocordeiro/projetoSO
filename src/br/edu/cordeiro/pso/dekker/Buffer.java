@@ -31,6 +31,7 @@ public class Buffer {
     /*
      * Métodos para o controle de acesso a região crítica
      */
+    @SuppressWarnings("empty-statement")
     protected void enter_region(int process) {
         int other = 1 - process;
         interest[process] = true;
