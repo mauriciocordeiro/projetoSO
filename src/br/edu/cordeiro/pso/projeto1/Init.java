@@ -8,44 +8,44 @@ package br.edu.cordeiro.pso.projeto1;
  */
 public class Init {
     
-    public static void main(String[] args) {
-        
-        Buffer buffer = new Buffer();
-        
-        /*
-         * Create threads
-        */
-        Consumer[] readers = new Consumer[25];
-        for (int i = 0; i < 25; i++) {
-            readers[i] = new Consumer(buffer);            
-        }
-        
-        Producer[] writers = new Producer[25];
-        for (int i = 0; i < 25; i++) {
-            writers[i] = new Producer(buffer);            
-        }
-        
-        /*
-         * Start Threads 
-         */
-        for (int i = 0; i < 25; i++) {
-            writers[i].start();
-        }
-        
-        for (int i = 0; i < 25; i++) {
-            readers[i].start();            
-        }
-        
-        /*
-         * Join Threads
-         */
-        for (int i = 0; i < writers.length; i++) {
-            try {
-                writers[i].join();
-                readers[i].join();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace(System.err);
-            }
-        }
-    }
+//    public static void main(String[] args) {
+//        
+//        Buffer buffer = new Buffer();
+//        
+//        /*
+//         * Create threads
+//        */
+//        Consumer[] readers = new Consumer[25];
+//        for (int i = 0; i < 25; i++) {
+//            readers[i] = new Consumer(buffer);            
+//        }
+//        
+//        Producer[] writers = new Producer[25];
+//        for (int i = 0; i < 25; i++) {
+//            writers[i] = new Producer(buffer);            
+//        }
+//        
+//        /*
+//         * Start Threads 
+//         */
+//        for (int i = 0; i < 25; i++) {
+//            writers[i].start();
+//        }
+//        
+//        for (int i = 0; i < 25; i++) {
+//            readers[i].start();            
+//        }
+//        
+//        /*
+//         * Join Threads
+//         */
+//        for (int i = 0; i < writers.length; i++) {
+//            try {
+//                writers[i].join();
+//                readers[i].join();
+//            } catch (InterruptedException ex) {
+//                ex.printStackTrace(System.err);
+//            }
+//        }
+//    }
 }

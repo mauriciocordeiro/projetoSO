@@ -16,16 +16,28 @@ public class Buffer {
     private int wait_turn;
     boolean[] interest = new boolean[2];
     
+    private final long SLEEPTIME = 5 * 1000;
+    
     public Buffer() {
         x = -1;
     }
     
     public Integer read() {
+        try {
+           //Thread.sleep(SLEEPTIME);
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
         return x;
     }
     
     public void write(int x) {
-        this.x = x;
+        try {
+            //Thread.sleep(SLEEPTIME);
+            this.x = x;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
     }
     
     /*

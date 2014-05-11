@@ -15,8 +15,5 @@ public class Init {
         
         writer.start();
         reader.start();
-        
-        writer.join();
-        reader.join();
     }
 }
