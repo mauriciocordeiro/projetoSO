@@ -32,7 +32,7 @@ public class Buffer {
      * Métodos para o controle de acesso a região crítica
      */
     @SuppressWarnings("empty-statement")
-    protected void enter_region(int process) {
+    protected void enterRegion(int process) {
         int other = 1 - process;
         interest[process] = true;
         wait_turn = process;
@@ -40,7 +40,7 @@ public class Buffer {
         System.err.println("Process " + process + " enter region");
     }
     
-    protected void leave_region(int process) {
+    protected void leaveRegion(int process) {
         interest[process] = false;
         System.err.println("Process " + process + " leave region");
     }

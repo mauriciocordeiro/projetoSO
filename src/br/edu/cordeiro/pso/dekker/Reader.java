@@ -18,8 +18,8 @@ public class Reader extends Thread{
     
     @Override
     public void run() {
-        buffer.enter_region(process);
+        buffer.enterRegion(process);
         System.out.println("Read: " + buffer.read());
-        buffer.leave_region(process);
+        buffer.leaveRegion(process);
     }
 }

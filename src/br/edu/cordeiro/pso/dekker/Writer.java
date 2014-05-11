@@ -20,10 +20,10 @@ public class Writer extends Thread {
     
     @Override
     public void run() {
-        buffer.enter_region(process);
+        buffer.enterRegion(process);
         Integer w = new Random().nextInt(5);
         System.out.println("Write: " + w);
         buffer.write(w);
-        buffer.leave_region(process);
+        buffer.leaveRegion(process);
     }
 }
