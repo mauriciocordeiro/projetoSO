@@ -12,3 +12,7 @@ Fase 1:
     d. Qualquer thread pode acessar qualquer posição do array;
     e. As threads devem Imprimir na tela, tanto o valor de escrita quanto de leitura, bem como a posição do array em questão;
   2. É desejável que algum controle seja adotado para as operações de memória, mas não é obrigatório neste momento. 
+
+
+Fase 2:
+  Implementar o algoritmo de Dekker
