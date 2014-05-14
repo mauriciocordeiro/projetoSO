@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author Mauricio Cordeiro
  * @version 0.1
- * @since 5/10/2014
+ * @since 5/13/2014
  */
 public class Writer extends Thread {
     
@@ -21,9 +21,7 @@ public class Writer extends Thread {
     @Override
     public void run() {
         buffer.enterRegion(process);
-        Integer w = new Random().nextInt(5);
-        System.out.println("Write: " + w);
-        buffer.write(w);
+        buffer.write(new Random().nextInt(5));
         buffer.leaveRegion(process);
     }
 }

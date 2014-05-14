@@ -4,7 +4,7 @@ package br.edu.cordeiro.pso.dekker;
  *
  * @author Mauricio Cordeiro
  * @version 0.1
- * @since 5/10/2014
+ * @since 5/13/2014
  */
 public class Reader extends Thread{
     
@@ -19,7 +19,7 @@ public class Reader extends Thread{
     @Override
     public void run() {
         buffer.enterRegion(process);
-        System.out.println("Read: " + buffer.read());
+        buffer.read();
         buffer.leaveRegion(process);
     }
 }

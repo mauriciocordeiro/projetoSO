@@ -4,7 +4,7 @@ package br.edu.cordeiro.pso.dekker;
  *
  * @author Mauricio Cordeiro
  * @version 0.1
- * @since 5/10/2014
+ * @since 5/13/2014
  * 
  * @about Buffer implementado com o algoritmo de Dekker
  */
@@ -16,28 +16,17 @@ public class Buffer {
     private int wait_turn;
     boolean[] interest = new boolean[2];
     
-    private final long SLEEPTIME = 5 * 1000;
-    
     public Buffer() {
         x = -1;
     }
     
-    public Integer read() {
-        try {
-           //Thread.sleep(SLEEPTIME);
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
-        }
-        return x;
+    public void read() {
+        System.out.println("Read: " + x);
     }
     
     public void write(int x) {
-        try {
-            //Thread.sleep(SLEEPTIME);
-            this.x = x;
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
-        }
+        this.x = x;
+        System.out.println("Write: " + x);
     }
     
     /*
