@@ -1,4 +1,6 @@
-package br.edu.cordeiro.pso.dekker;
+package dekker;
+
+import java.util.Random;
 
 /**
  *
@@ -6,12 +8,12 @@ package br.edu.cordeiro.pso.dekker;
  * @version 0.1
  * @since 5/13/2014
  */
-public class Reader extends Thread{
+public class Writer extends Thread {
     
-    private Buffer buffer;
+    Buffer buffer;
     protected int process;
     
-    public Reader(Buffer buffer, int process) {
+    public Writer(Buffer buffer, int process) {
         this.buffer = buffer;
         this.process = process;
     }
@@ -19,7 +21,7 @@ public class Reader extends Thread{
     @Override
     public void run() {
         buffer.enterRegion(process);
-        buffer.read();
+        buffer.write(new Random().nextInt(5));
         buffer.leaveRegion(process);
     }
 }

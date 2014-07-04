@@ -1,4 +1,4 @@
-package br.edu.cordeiro.pso.projeto1;
+package projeto1;
 
 import java.util.Random;
 

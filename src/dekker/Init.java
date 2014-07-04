@@ -1,4 +1,4 @@
-package br.edu.cordeiro.pso.dekker;
+package dekker;
 
 /**
  *
