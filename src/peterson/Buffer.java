@@ -1,4 +1,4 @@
-package dekker;
+package peterson;
 
 /**
  *
@@ -38,11 +38,11 @@ public class Buffer {
         interest[process] = true;
         wait_turn = process;
         while((wait_turn == process) && interest[other]);
-        System.err.println("Process " + process + " enter region");
+        System.out.println("Process " + process + " enter region");
     }
     
     protected void leaveRegion(int process) {
         interest[process] = false;
-        System.err.println("Process " + process + " leave region");
+        System.out.println("Process " + process + " leave region");
     }
 }

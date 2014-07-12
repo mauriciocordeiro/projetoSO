@@ -1,4 +1,4 @@
-package dekker;
+package peterson;
 
 /**
  *

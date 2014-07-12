@@ -11,9 +11,10 @@ public class Buffer {
     private Integer[] buffer = {null, null, null, null, null};
     private final long SECONDS = 1000;
     
-    public synchronized String push(Integer x) {
+    public synchronized void push(Integer x) {
         while(!hasSpace()) {
             try {
+                System.out.println("Buffer hasn't space. Wait");
                 wait(SECONDS);
             }
             catch(InterruptedException e) {
@@ -22,14 +23,14 @@ public class Buffer {
         }
         int index = searchToPush(); 
         buffer[index] = x;
+        System.out.println("Write: " + x + " Position: " + index);
         notifyAll();
-        
-        return "Write: " + x + " Position: " + index;
     }
     
-    public synchronized String pull() {
+    public synchronized void pull() {
         while(isEmpty()) {
             try {
+                System.out.println("Buffer is Empty. Wait.");
                 wait(SECONDS);
             }
             catch(InterruptedException e) {
@@ -39,9 +40,8 @@ public class Buffer {
         int index = searchToPull();
         Integer temp = buffer[index];
         buffer[index] = null;
+        System.out.println("Read: " + temp.toString() + " Position: " + index);
         notifyAll();
-        
-        return "Read: " + temp.toString() + " Position: " + index;
     }
     
     public int searchToPush() {
