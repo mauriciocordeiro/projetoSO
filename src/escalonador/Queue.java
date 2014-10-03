@@ -8,47 +8,47 @@ import java.util.Iterator;
  *
  * @author Mauricio
  */
-public class Queue implements java.util.Queue<Object>{
+public class Queue implements java.util.Queue<Process>{
     
-    private ArrayList queue;
+    private ArrayList<Process> queue;
     
     public Queue() {
-        this.queue = new ArrayList();
+        this.queue = new ArrayList<Process>();
     }
 
     @Override
-    public boolean add(Object e) {
+    public boolean add(Process e) {
         return queue.add(e);
     }
 
     @Override
-    public boolean offer(Object e) {
+    public boolean offer(Process e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object remove() {
-        Object temp = queue.get(0);
+    public Process remove() {
+        Process temp = queue.get(0);
         queue.remove(0);
         return temp;
     }
     
-    public Object get(int index) {
+    public Process get(int index) {
         return queue.get(index);
     }
 
     @Override
-    public Object poll() {
+    public Process poll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object element() {
+    public Process element() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object peek() {
+    public Process peek() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -68,13 +68,17 @@ public class Queue implements java.util.Queue<Object>{
     }
 
     @Override
-    public Iterator<Object> iterator() {
+    public Iterator<Process> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Process[] toArray() {
+        Process[] array = new Process[this.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = this.get(i);            
+        }
+        return array;
     }
 
     @Override
@@ -88,7 +92,7 @@ public class Queue implements java.util.Queue<Object>{
     }
 
     @Override
-    public boolean addAll(Collection<? extends Object> clctn) {
+    public boolean addAll(Collection<? extends Process> clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -109,6 +113,28 @@ public class Queue implements java.util.Queue<Object>{
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return queue.remove(o);
+    }
+    
+    public Queue orderByDeadline() {
+        Queue q = new Queue();
+        int size = this.size();
+        Process[] a = this.toArray();
+        Process aux = null;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a.length-1; j++) {
+                if(a[j].getDeadline()>a[j+1].getDeadline()) {
+                    aux = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = aux;
+                }
+            }
+        }
+                
+        for (int i = 0; i < a.length; i++) {
+            q.add(a[i]);            
+        }
+        
+        return q;
     }
 }

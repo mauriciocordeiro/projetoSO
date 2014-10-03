@@ -12,8 +12,13 @@ public class Process extends Thread {
     public static final int BLOCKED = 2;
     public static final int FINALIZED = 3;
     
-    private long deadline;
+    protected long deadline;
     private long arrive;
+    
+    public long start;
+    public long stop;
+    public long runtime;
+    
     protected int state;
     
     private int count;
@@ -25,6 +30,7 @@ public class Process extends Thread {
         this.deadline = deadline;
         this.state = READY;
         count = new Long(deadline/1000).intValue();
+        this.setPriority(MIN_PRIORITY);
     } 
 
     public Process(long deadline, long arrive) {
@@ -32,6 +38,7 @@ public class Process extends Thread {
         this.arrive = arrive;
         this.state = READY;
         count = new Long(deadline/1000).intValue();
+        this.setPriority(MIN_PRIORITY);
     }
 
     public long getDeadline() {
@@ -58,12 +65,13 @@ public class Process extends Thread {
     }
     
     @Override
-    public void run() { 
-        while(deadline>0) {
+    public void run() {
+        do {
             System.out.println("["+ this.getId()+"] counting "+count--);
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {}
-        }
+        } while(count>0);
+        this.stop();
     }
 }

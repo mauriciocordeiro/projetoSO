@@ -42,15 +42,13 @@ public class RoundRobin extends Thread {
             while (System.currentTimeMillis() - start < TIMESLICE);
             try {
                 currentProcess.suspend();
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
             currentProcess.setDeadline(currentProcess.getDeadline() - TIMESLICE);
             if (currentProcess.getDeadline() > 0) {
                 currentProcess.state = Process.BLOCKED;
                 blockedQueue.add(currentProcess);
             } else {
                 currentProcess.state = Process.FINALIZED;
-                currentProcess.stop();
             }
             System.out.print("BLOCKED: ");
             for (int i = 0; i < blockedQueue.size(); i++) {
