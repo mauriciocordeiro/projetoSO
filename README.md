@@ -15,4 +15,10 @@ Fase 1:
 
 
 Fase 2:
-  Implementar o algoritmo de Dekker
+  Implementar o algoritmo de Dekker e/ou a Solução de Peterson
+
+Fase 3:
+  Implementar um escalonador round robin
+
+Fase 4:
+  Implementar um escalonador MTR
